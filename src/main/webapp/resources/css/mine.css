@@ -1,0 +1,12 @@
+
+.botao-superior {
+	position: fixed; right: 30px; margin-top: 15px;
+}
+
+header {
+	margin-top: 15px;
+}
+
+.corpo {
+	padding: 2%; padding-top: 0%; 
+}
