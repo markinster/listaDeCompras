@@ -24,7 +24,7 @@ public class TesteShoppingList {
 		
 		sp.setItems(items);
 		
-		Assert.assertEquals(30.99, sp.getTotal(), 0);
+		Assert.assertEquals(30.99, sp.getTotal(), 0.0001);
 	}
 
 }
