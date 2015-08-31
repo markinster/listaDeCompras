@@ -54,7 +54,7 @@ public class ShoppingListRepository extends Repository<ShoppingList> {
 		
 	}
 
-
+	
 	@Override
 	public ShoppingList getByText(String name) {
 		EntityManager manager = getEntityManager();
