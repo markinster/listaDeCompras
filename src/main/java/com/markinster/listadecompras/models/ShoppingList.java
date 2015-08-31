@@ -94,7 +94,7 @@ public class ShoppingList implements Serializable {
 
     @Override
     public String toString() {
-        return "com.edilsystem.portal.entities2.ShoppingList[ id=" + id + " ]";
+        return id+"="+name;
     }
 
 	public double getTotal() {

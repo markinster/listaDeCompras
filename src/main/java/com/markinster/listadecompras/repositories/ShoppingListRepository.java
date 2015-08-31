@@ -59,8 +59,7 @@ public class ShoppingListRepository extends Repository<ShoppingList> {
 	public ShoppingList getByText(String name) {
 		EntityManager manager = getEntityManager();
 		
-		String hql = "SELECT s FROM ShoppingList s WHERE s.name like :name";
-		TypedQuery<ShoppingList> query = manager.createQuery(hql, ShoppingList.class);
+		TypedQuery<ShoppingList> query = manager.createNamedQuery("ShoppingList.findByName", ShoppingList.class);
 		
 		query.setParameter("name", name);
 		List<ShoppingList> resultList = query.getResultList();
