@@ -36,17 +36,22 @@ public class Product implements Serializable {
     @Basic(optional = false)
     @Column(name = "id", nullable = false)
     private Long id;
+    
     @Basic(optional = false)
     @Column(name = "checked", nullable = false)
     private boolean checked;
+    
     @Column(name = "name", length = 255)
     private String name;
+    
     @Basic(optional = false)
     @Column(name = "price", nullable = false)
     private double price;
+    
     @Basic(optional = false)
     @Column(name = "quant", nullable = false)
     private int quant;
+    
     @JoinColumn(name = "shopping_list", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.DETACH)
     private ShoppingList shoppingList;
