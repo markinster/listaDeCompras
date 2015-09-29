@@ -32,7 +32,7 @@
 		
 		<!-- Logo marca -->
 		<header>
-			<a href="index" style="margin-left: 2%;"><img src="${img}/logo.png"></a> 
+			<a href="index" style="margin-left: 2%;"><img src="${img}/logo.png" style="width: 20%;"></a>  
 			
 			<hr />
 		</header>	
