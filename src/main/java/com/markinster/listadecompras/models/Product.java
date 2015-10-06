@@ -52,9 +52,9 @@ public class Product implements Serializable {
     @Column(name = "quant", nullable = false)
     private int quant;
     
-    @JoinColumn(name = "shopping_list", referencedColumnName = "id")
+    @JoinColumn(name = "shop_list", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.DETACH)
-    private ShoppingList shoppingList;
+    private ShopList shopList;
 
     public Product() {
     }
@@ -109,13 +109,13 @@ public class Product implements Serializable {
         this.quant = quant;
     }
 
-    public ShoppingList getShoppingList() {
-        return shoppingList;
-    }
-
-    public void setShoppingList(ShoppingList shoppingList) {
-        this.shoppingList = shoppingList;
-    }
+    public ShopList getShopList() {
+		return shopList;
+	}
+    
+    public void setShopList(ShopList shopList) {
+		this.shopList = shopList;
+	}
 
     @Override
     public int hashCode() {

@@ -7,20 +7,19 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.markinster.listadecompras.models.Product;
-import com.markinster.listadecompras.models.ShoppingList;
+import com.markinster.listadecompras.models.ShopList;
 
-public class ShoppingListRepository extends Repository<ShoppingList> {
+public class ShopListRepository extends Repository<ShopList> {
 
 	//retorna todas as listas de compras cadastradas
 	@Override
-	public List<ShoppingList> getAll() {				
+	public List<ShopList> getAll() {				
 		EntityManager manager = getEntityManager();
-		TypedQuery<ShoppingList> query = manager.createNamedQuery("ShoppingList.findAll", ShoppingList.class);		
-		List<ShoppingList> list = query.getResultList();
-		for (ShoppingList s : list) {
-			for (Product product : s.getItems()) {
-				
-				product.setShoppingList(null);
+		TypedQuery<ShopList> query = manager.createNamedQuery("ShopList.findAll", ShopList.class);		
+		List<ShopList> list = query.getResultList();
+		for (ShopList s : list) {
+			for (Product product : s.getItems()) {				
+				product.setShopList(null);
 			}
 		}
 		
@@ -29,9 +28,9 @@ public class ShoppingListRepository extends Repository<ShoppingList> {
 
 	//retorna uma lista de compras pelo seu ID
 	@Override
-	public ShoppingList getById(Long id) {
+	public ShopList getById(Long id) {
 		EntityManager manager = getEntityManager();
-		TypedQuery<ShoppingList> query = manager.createNamedQuery("ShoppingList.findById", ShoppingList.class);
+		TypedQuery<ShopList> query = manager.createNamedQuery("ShopList.findById", ShopList.class);
 		query.setParameter("id", id);
 		return query.getSingleResult();
 	}
@@ -42,11 +41,11 @@ public class ShoppingListRepository extends Repository<ShoppingList> {
 		EntityManager manager = getEntityManager();
 		manager.getTransaction().begin();
 		
-		Query query = manager.createQuery("DELETE FROM Product p WHERE p.shoppingList.id =:id");
+		Query query = manager.createQuery("DELETE FROM Product p WHERE p.shopList.id =:id");
 		query.setParameter("id", id);
 		query.executeUpdate();	
 		
-		query = manager.createQuery("DELETE FROM ShoppingList s WHERE s.id =:id");
+		query = manager.createQuery("DELETE FROM ShopList s WHERE s.id =:id");
 		query.setParameter("id", id);
 		query.executeUpdate();	
 		
@@ -56,13 +55,13 @@ public class ShoppingListRepository extends Repository<ShoppingList> {
 
 	
 	@Override
-	public ShoppingList getByText(String name) {
+	public ShopList getByText(String name) {
 		EntityManager manager = getEntityManager();
 		
-		TypedQuery<ShoppingList> query = manager.createNamedQuery("ShoppingList.findByName", ShoppingList.class);
+		TypedQuery<ShopList> query = manager.createNamedQuery("ShopList.findByName", ShopList.class);
 		
 		query.setParameter("name", name);
-		List<ShoppingList> resultList = query.getResultList();
+		List<ShopList> resultList = query.getResultList();
 		if (resultList != null && resultList.size() > 0)
 			return resultList.get(0);
 		

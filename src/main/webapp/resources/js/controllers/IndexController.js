@@ -20,14 +20,14 @@ app.controller('IndexController', function ($scope, $http, $resource) {
 		
 		$scope.alertType = null;
 		
-		var res = $http.post('/compras/rest/shopping/create', $scope.listaName);
+		var res = $http.post('/compras/rest/shoplist/create', $scope.listaName);
 		res.success(function(status) {
 			listar();
 		});				
 	}
 	
 	$scope.excluir = function (aid) {		
-		var resource = $resource('/compras/rest/shopping/delete/:id');	
+		var resource = $resource('/compras/rest/shoplist/delete/:id');	
 		
 		resource.delete({id: aid}, function(status) {
 			listar();
@@ -35,7 +35,7 @@ app.controller('IndexController', function ($scope, $http, $resource) {
 	}
 	
 	function listar() {
-		$http.get('/compras/rest/shopping').success(function(retorno) {
+		$http.get('/compras/rest/shoplist').success(function(retorno) {
 			$scope.listaDeCompras = retorno;
 		}).error(function(msg) {
 			$scope.message = error;

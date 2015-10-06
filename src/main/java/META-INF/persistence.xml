@@ -4,7 +4,7 @@
 	<persistence-unit name="listadecompras">
 	
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>com.markinster.listadecompras.models.ShoppingList</class>
+		<class>com.markinster.listadecompras.models.ShopList</class>
 		<class>com.markinster.listadecompras.models.Product</class>
 
 		<properties>

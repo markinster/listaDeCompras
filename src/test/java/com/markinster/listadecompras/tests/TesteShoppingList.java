@@ -7,13 +7,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.markinster.listadecompras.models.Product;
-import com.markinster.listadecompras.models.ShoppingList;
+import com.markinster.listadecompras.models.ShopList;
 
 public class TesteShoppingList {
 
 	@Test
 	public void total_deve_retornar_120() {
-		ShoppingList sp = new ShoppingList();
+		ShopList sp = new ShopList();
 		sp.setId(1l);
 		sp.setName("Lista de compras para teste");
 		List<Product> items = new ArrayList<Product>();

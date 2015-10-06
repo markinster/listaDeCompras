@@ -24,12 +24,12 @@ import javax.persistence.Table;
  * @author developer
  */
 @Entity
-@Table(name = "shopping_list")
+@Table(name = "shop_list")
 @NamedQueries({
-    @NamedQuery(name = "ShoppingList.findAll", query = "SELECT s FROM ShoppingList s Order by s.id desc"),
-    @NamedQuery(name = "ShoppingList.findById", query = "SELECT s FROM ShoppingList s WHERE s.id = :id"),
-    @NamedQuery(name = "ShoppingList.findByName", query = "SELECT s FROM ShoppingList s WHERE s.name like :name")})
-public class ShoppingList implements Serializable {
+    @NamedQuery(name = "ShopList.findAll", query = "SELECT s FROM ShopList s Order by s.id desc"),
+    @NamedQuery(name = "ShopList.findById", query = "SELECT s FROM ShopList s WHERE s.id = :id"),
+    @NamedQuery(name = "ShopList.findByName", query = "SELECT s FROM ShopList s WHERE s.name like :name")})
+public class ShopList implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,13 +38,13 @@ public class ShoppingList implements Serializable {
     private Long id;
     @Column(name = "name", length = 255)
     private String name;
-    @OneToMany(mappedBy = "shoppingList", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "shopList", fetch = FetchType.LAZY)
     private List<Product> items;
 
-    public ShoppingList() {
+    public ShopList() {
     }
 
-    public ShoppingList(Long id) {
+    public ShopList(Long id) {
         this.id = id;
     }
 
@@ -82,10 +82,10 @@ public class ShoppingList implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ShoppingList)) {
+        if (!(object instanceof ShopList)) {
             return false;
         }
-        ShoppingList other = (ShoppingList) object;
+        ShopList other = (ShopList) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

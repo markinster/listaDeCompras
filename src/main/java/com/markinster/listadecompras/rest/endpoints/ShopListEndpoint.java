@@ -1,4 +1,4 @@
-package com.markinster.listadecompras.rest.services;
+package com.markinster.listadecompras.rest.endpoints;
 
 import java.util.List;
 
@@ -12,22 +12,22 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.markinster.listadecompras.models.Product;
-import com.markinster.listadecompras.models.ShoppingList;
+import com.markinster.listadecompras.models.ShopList;
 import com.markinster.listadecompras.repositories.IRepository;
 import com.markinster.listadecompras.repositories.ProductRepository;
-import com.markinster.listadecompras.repositories.ShoppingListRepository;
+import com.markinster.listadecompras.repositories.ShopListRepository;
 
-@Path("/shopping")
-public class ShoppingServices {
+@Path("/shoplist")
+public class ShopListEndpoint {
 
-	IRepository<ShoppingList> repo = new ShoppingListRepository();
+	IRepository<ShopList> repo = new ShopListRepository();
 	IRepository<Product> pRepo = new ProductRepository();
 
 	//retorna todas a listas cadastradas
 	@GET @Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<ShoppingList> getAllShooppingList() {
+	public List<ShopList> getAllShooppingList() {
 		// neste caso ira retornar todas as listas de compras
 		return repo.getAll();
 	}
@@ -36,16 +36,16 @@ public class ShoppingServices {
 	@GET @Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ShoppingList getShooppingListById(@PathParam("id") String id_param) {
+	public ShopList getShooppingListById(@PathParam("id") String id_param) {
 		Long id = 0l;
 		try {
 			id = Long.valueOf(id_param);
 		} catch (Exception e) {
 			return null;
 		}
-		ShoppingList shoppingList = repo.getById(id);
+		ShopList shoppingList = repo.getById(id);
 		for (Product product : shoppingList.getItems()) {
-			product.setShoppingList(null);
+			product.setShopList(null);
 		}
 		return shoppingList;
 	}
@@ -61,7 +61,7 @@ public class ShoppingServices {
 		if (repo.getByText(name) != null)
 			return;		
 		
-		ShoppingList shoppingList = new ShoppingList();
+		ShopList shoppingList = new ShopList();
 		shoppingList.setName(name);
 		repo.persist(shoppingList);
 	}
@@ -91,9 +91,9 @@ public class ShoppingServices {
 		long idl = id;
 		
 		// neste caso vai retornar os produtos da lista do id
-		ShoppingList listaDeCompras = (ShoppingList) repo.getById(idl);
+		ShopList listaDeCompras = (ShopList) repo.getById(idl);
 		for (Product product : listaDeCompras.getItems())
-			product.setShoppingList(null);
+			product.setShopList(null);
 
 		return listaDeCompras.getItems();
 	}
@@ -138,8 +138,8 @@ public class ShoppingServices {
 
 		product.setChecked(false);
 
-		ShoppingList shoppingList = (ShoppingList) repo.getById(product.getShoppingList().getId());
-		product.setShoppingList(shoppingList);
+		ShopList shoppingList = (ShopList) repo.getById(product.getShopList().getId());
+		product.setShopList(shoppingList);
 
 		pRepo.persist(product);
 	}
