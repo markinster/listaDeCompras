@@ -1,4 +1,5 @@
-# listaDeCompras
+# listaDeCompras / ShopList
+
 
 Um pequeno sistema de lista de compras para fins de estudo, utilizando
 
