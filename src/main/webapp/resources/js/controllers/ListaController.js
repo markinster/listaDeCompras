@@ -24,7 +24,7 @@ app.controller('ListaController', function ($scope, $http, $resource) {
 				
 		dataObj = '{\"id\":' + id + ', \"price\":' + price + ', \"quant\":' + quant + '}';
 		
-		var res = $http.post('/compras/rest/shopping/product/update', dataObj);
+		var res = $http.post('/compras/rest/shoplist/product/update', dataObj);
 		res.success(function(status) {
 			listar();
 		});		
@@ -32,7 +32,7 @@ app.controller('ListaController', function ($scope, $http, $resource) {
 	
 	// altera do status de comprado
 	$scope.setChecked = function (id) {			
-		var res = $http.post('/compras/rest/shopping/product/checked', id);
+		var res = $http.post('/compras/rest/shoplist/product/checked', id);
 		res.success(function(status) {
 			listar();
 		});		
@@ -40,7 +40,7 @@ app.controller('ListaController', function ($scope, $http, $resource) {
 	
 	// altera do status de comprado
 	$scope.deletar = function (aid) {	
-		var resource = $resource('/compras/rest/shopping/product/delete/:id');	
+		var resource = $resource('/compras/rest/shoplist/product/delete/:id');	
 		
 		resource.delete({id: aid}, function(status) {
 			listar();
@@ -61,11 +61,11 @@ app.controller('ListaController', function ($scope, $http, $resource) {
 					', \"name\":\"'+ $scope.productName + '\"' +
 					', \"price\":' + $scope.productPrice + 
 					', \"quant\":' + $scope.productQuant + 
-					', \"shoppingList\": {\"id\": ' + $scope.id +
+					', \"shopList\": {\"id\": ' + $scope.id +
 					'}}';
 		
 		
-		var res = $http.post('/compras/rest/shopping/product/insert', dataObj);
+		var res = $http.post('/compras/rest/shoplist/product/insert', dataObj);
 		res.success(function(status) {
 			listar();
 		});		
@@ -99,7 +99,7 @@ app.controller('ListaController', function ($scope, $http, $resource) {
 
 	
 	function listar() {
-		var resLista = $resource('/compras/rest/shopping/:id');	
+		var resLista = $resource('/compras/rest/shoplist/:id');	
 		
 		resLista.get({id: $scope.id}, function(retorno) {
 			$scope.listaDeCompras = retorno
